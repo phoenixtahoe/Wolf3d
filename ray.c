@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 23:11:44 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/02 00:25:39 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/06/02 19:41:53 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void draw_all(t_env *all)
                 ray->hit = 1;
                 break;
             }
-            if (current->map[ray->mapx][ray->mapy] > 0)
+            if (current->map[ray->mapy][ray->mapx] > 0)
                 ray->hit = 1;
         }
         if (ray->side == 0)
