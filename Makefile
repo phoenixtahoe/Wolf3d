@@ -6,11 +6,11 @@
 #    By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 19:50:54 by pdavid            #+#    #+#              #
-#    Updated: 2018/06/01 23:53:48 by pdavid           ###   ########.fr        #
+#    Updated: 2018/06/14 19:05:45 by pdavid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-libx_flags = -L minilibx -lmlx -framework OpenGL -framework AppKit
+libx_flags = -L minilibx -fsanitize=address -lmlx -framework OpenGL -framework AppKit
 
 cflags = -Wall -Wextra -Werror -lpthread
 
@@ -22,7 +22,7 @@ header = wolf3d.h
 
 includes = ./libft/libft.a ./minilibx/libmlx.a
 
-SRC = main.c tools.c read.c ray.c mlx.c init.c
+SRC = main.c read.c ray.c mlx.c init.c tex.c
 
 OBJ = *.o
 
