@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:08:10 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/15 21:54:26 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/06/24 20:32:31 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct		s_ray
 	double			floory;
 	int				texy;
 	int				texx;
-	int				texnum;
+	int				textnum;
 	int				d;
 	int				floortexty;
 	int				floortextx;
@@ -140,7 +140,7 @@ typedef struct      s_env
 int 				keydown(int keycode, t_env *all);
 int                 ft_initread(char *str, t_env *all);
 int                 *parse(char *str, int x);
-int					draw(t_env *current);
+void					draw(t_env *e);
 void				init_env(t_env *e);
 t_ray				*init_ray(void);
 void 				init_text(t_env *e);

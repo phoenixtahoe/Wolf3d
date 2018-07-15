@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:04:41 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/18 18:59:23 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/06/24 20:40:10 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int keydown(int keycode, t_env *all)
         exit(1);
     if (keycode == 13)
     {
-        if (e->map[(int)(e->ray->posy)][(int)(e->ray->posx + e->ray->dirx * 0.2)] == 0)
+        if (e->map[(int)(e->ray->posy)][(int)(e->ray->posx + e->ray->dirx * 0.02)] == 0)
             e->ray->posx += e->ray->dirx * 0.2;
         if (e->map[(int)(e->ray->posy + e->ray->diry * 0.2)][(int)e->ray->posx] == 0)
             e->ray->posy += e->ray->diry * 0.2;
