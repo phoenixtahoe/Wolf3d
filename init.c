@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:03:53 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/21 15:04:52 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/07/16 17:30:10 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_ray *init_ray(void)
 	ray->dirx = -1.0;
 	ray->diry = 0.0;
 	ray->planex = 0;
-	ray->planey = 2 * (atan(0.45 / 1.0));
+	ray->planey = 2 * (atan(.45 / 1.0));
 	return (ray);
 }
 

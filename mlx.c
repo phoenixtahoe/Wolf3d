@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:04:41 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/24 20:40:10 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/07/16 17:53:56 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,5 @@ int keydown(int keycode, t_env *all)
         e->ray->planey = e->ray->oldplanex * sin(0.2) + e->ray->planey * cos(0.2);
     }
     draw(e);
-	mlx_put_image_to_window(e->mlx->mlx, e->mlx->window, e->mlx->image, 0, 0);
     return (0);
 }

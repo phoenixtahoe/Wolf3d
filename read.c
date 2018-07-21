@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:15:53 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/21 15:08:37 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/07/16 17:29:15 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ int		*parse(char *str, int x)
 		}
 		str++;
 	}
-	arr[17] = 1;
-	arr[0] = 1;
 	return (arr);
 }
 
@@ -47,7 +45,7 @@ int	ft_initread(char *str, t_env *current)
 		exit(1);
 	}
 	current->map = (int **)malloc(sizeof(int **) * HEIGHT_MAP);
-	while (get_next_line(fd, &line) == 1)
+	while (get_next_line(fd, &line) != 0)
 	{
 		current->map[index] = parse(line, WIDTH_MAP);
 		free(line);

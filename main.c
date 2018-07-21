@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 19:59:51 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/24 20:28:15 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/07/16 17:54:02 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int main(int argc, char **argv)
 	    draw(e);
 	    printf("finished drawing\n");
 	    mlx_hook(e->mlx->window, 2, 0, keydown, e);
-		mlx_put_image_to_window(e->mlx->mlx, e->mlx->window, e->mlx->image, 0, 0);
 	    mlx_loop(e->mlx->mlx);
     }
     return (0);

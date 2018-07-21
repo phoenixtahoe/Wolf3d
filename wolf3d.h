@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:08:10 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/24 20:32:31 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/07/16 17:55:39 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # define WIDTH 800
 # define HEIGHT_MAP 18
 # define WIDTH_MAP 18
-# define pink 0xFF7B7B
-# define green 0x7BFF7F
-# define purple 0xBD7BFF
-# define blue 0x000b7E
 # define TEXT 256
 
 # include <time.h>
@@ -31,6 +27,14 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
+
+typedef struct		s_events
+{
+	int				w;
+	int				a;
+	int				s;
+	int				d;
+}					t_events;
 
 typedef struct		s_xpm
 {
@@ -126,6 +130,7 @@ typedef struct		s_ray
 typedef struct      s_env
 {
     t_player        *player;
+	t_events		*events;
     t_ray           *ray;
     t_mlx           *mlx;
 	t_xpm			xpm;
