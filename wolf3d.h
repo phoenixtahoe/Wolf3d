@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:08:10 by pdavid            #+#    #+#             */
-/*   Updated: 2018/07/16 17:55:39 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/10/18 15:33:42 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,8 +145,8 @@ typedef struct      s_env
 int 				keydown(int keycode, t_env *all);
 int                 ft_initread(char *str, t_env *all);
 int                 *parse(char *str, int x);
-void					draw(t_env *e);
-void				init_env(t_env *e);
+void				draw(t_env *e);
+t_env 				*init_env(void);
 t_ray				*init_ray(void);
 void 				init_text(t_env *e);
 void				sky(t_env *e, int x);
