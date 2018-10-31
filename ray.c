@@ -6,13 +6,13 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 23:11:44 by pdavid            #+#    #+#             */
-/*   Updated: 2018/07/16 18:09:17 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/10/30 18:42:09 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	ray_init(t_env *e, int x)
+void	ray_pre(t_env *e, int x)
 {
 	e->ray->camerax = 2 * x / (double)WIDTH - 1;
 	e->ray->raydirx = e->ray->dirx + e->ray->planex * e->ray->camerax;
@@ -29,22 +29,26 @@ void	ray_dir(t_env *e)
 	if (e->ray->raydirx < 0)
 	{
 		e->ray->stepx = -1;
-		e->ray->sidedistx = (e->ray->posx - e->ray->mapx) * e->ray->deltadistx;
+		e->ray->sidedistx = (e->ray->posx - e->ray->mapx)
+			* e->ray->deltadistx;
 	}
 	else
 	{
 		e->ray->stepx = 1;
-		e->ray->sidedistx = (e->ray->mapx + 1.0 - e->ray->posx) * e->ray->deltadistx;
+		e->ray->sidedistx = (e->ray->mapx + 1.0 - e->ray->posx)
+			* e->ray->deltadistx;
 	}
 	if (e->ray->raydiry < 0)
 	{
 		e->ray->stepy = -1;
-		e->ray->sidedisty = (e->ray->posy - e->ray->mapy) * e->ray->deltadisty;
+		e->ray->sidedisty = (e->ray->posy - e->ray->mapy)
+			* e->ray->deltadisty;
 	}
 	else
 	{
 		e->ray->stepy = 1;
-		e->ray->sidedisty = (e->ray->mapy + 1.0 - e->ray->posy) * e->ray->deltadisty;
+		e->ray->sidedisty = (e->ray->mapy + 1.0 - e->ray->posy)
+			* e->ray->deltadisty;
 	}
 }
 
@@ -64,11 +68,11 @@ void	ray_dda(t_env *e)
 			e->ray->mapy += e->ray->stepy;
 			e->ray->side = 1;
 		}
-		// if (WIDTH_MAP <= e->ray->mapx || e->ray->mapx <= 0 || e->ray->mapy <= 0 || HEIGHT_MAP < e->ray->mapy)
-		// {
-		// 	e->ray->hit = 1;
-		// 	break ;
-		// }
+		if ((e->x_max < e->ray->mapx || e->ray->mapx < 0 || e->ray->mapy < 0 ||
+			e->y_max < e->ray->mapy) && (e->ray->hit = 1))
+		{
+			break ;
+		}
 		if (e->map[e->ray->mapy][e->ray->mapx] > 0)
 			e->ray->hit = 1;
 	}
@@ -77,9 +81,11 @@ void	ray_dda(t_env *e)
 void	ray_wall(t_env *e)
 {
 	if (e->ray->side == 0)
-		e->ray->perpwalldist = (e->ray->mapx - e->ray->posx + (1 - e->ray->stepx) / 2) / e->ray->raydirx;
+		e->ray->perpwalldist = (e->ray->mapx - e->ray->posx +
+			(1 - e->ray->stepx) / 2) / e->ray->raydirx;
 	else
-		e->ray->perpwalldist = (e->ray->mapy - e->ray->posy + (1 - e->ray->stepy) / 2) / e->ray->raydiry;
+		e->ray->perpwalldist = (e->ray->mapy - e->ray->posy +
+			(1 - e->ray->stepy) / 2) / e->ray->raydiry;
 	printf("mapx = %d posx = %f stepx = %d raydirx = %f\n", e->ray->mapx, e->ray->posx, e->ray->stepx, e->ray->raydirx);
 	printf("mapy = %d posy = %f stepy = %d raydiry = %f\n", e->ray->mapy, e->ray->posy, e->ray->stepy, e->ray->raydiry);
 	e->ray->lineheight = (int)(HEIGHT / e->ray->perpwalldist);
@@ -118,62 +124,4 @@ void	ray_floor(t_env *e)
 		e->ray->floorx = e->ray->mapx + e->ray->wallx;
 		e->ray->floory = e->ray->mapy + 1.0;
 	}
-}
-
-void	text_floor(t_env *e, int x)
-{
-	int y;
-
-	e->ray->distwall = e->ray->perpwalldist;
-	e->ray->distpos = 0.0;
-	if (e->ray->drawend < 0)
-		e->ray->drawend = HEIGHT;
-	y = e->ray->drawend;
-	while (++y < HEIGHT)
-	{
-		e->ray->distcurr = HEIGHT / (2.0 * y - HEIGHT);
-		e->ray->weight = (e->ray->distcurr - e->ray->distpos) / (e->ray->distwall - e->ray->distpos);
-		e->ray->currfloorx = e->ray->weight * e->ray->floorx + (1.0 - e->ray->weight) * e->ray->posx;
-		e->ray->currfloory = e->ray->weight * e->ray->floory + (1.0 - e->ray->weight) * e->ray->posy;
-		e->ray->floortextx = (int)(e->ray->currfloorx * TEXT) % (int)TEXT;
-		e->ray->floortexty = (int)(e->ray->currfloory * TEXT) % (int)TEXT;
-		e->mlx->image_ptr[y * (int)HEIGHT + x] = ((e->text[0][(int)(TEXT * e->ray->floortexty + e->ray->floortextx)]) >> 1) & 8355711;
-		e->mlx->image_ptr[(int)(HEIGHT - y) * HEIGHT + x] = e->text[3][(int)(TEXT * e->ray->floortexty + e->ray->floortextx)];
-	}
-}
-
-void	text_wall(t_env *e, int x)
-{
-	int y;
-	
-	e->ray->texx = (int)(e->ray->wallx * (double)TEXT);
-	if (e->ray->side == 0 && e->ray->raydirx > 0)
-		e->ray->texx = TEXT - e->ray->texx - 1;
-	if (e->ray->side == 1 && e->ray->raydiry < 0)
-		e->ray->texx = TEXT - e->ray->texx - 1;
-	y = e->ray->drawstart - 1;
-	while (++y < e->ray->drawend)
-	{
-		e->ray->d = y * 256 - HEIGHT * 128 + e->ray->lineheight * 128;
-		e->ray->texy = ((e->ray->d * TEXT) / e->ray->lineheight) / 256;
-		e->mlx->image_ptr[y * (int)HEIGHT + x] = ((e->text[0][(int)(TEXT * e->ray->texx + e->ray->texy)]) >> 1) & 8355711;
-	}
-}
-
-void		draw(t_env *e)
-{
-	int x;
-	
-	x = -1;
-	while (++x < WIDTH)
-	{
-		ray_init(e, x);
-		ray_dir(e);
-		ray_dda(e);
-		ray_wall(e);
-		text_wall(e, x);
-		ray_floor(e);
-		text_floor(e, x);
-	}
-	mlx_put_image_to_window(e->mlx->mlx, e->mlx->window, e->mlx->image, 0, 0);
 }

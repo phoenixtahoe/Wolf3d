@@ -6,47 +6,44 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 19:59:51 by pdavid            #+#    #+#             */
-/*   Updated: 2018/10/18 15:30:59 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/10/30 18:37:17 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int printmap(t_env *current)
+void		draw(t_env *e)
 {
-    int y;
-    int x;
+	int		x;
 
-    y = 0;
-    while(y != HEIGHT_MAP)
-    {
-        x = 0;
-        while (x != WIDTH_MAP)
-        {
-            printf("%d ", current->map[y][x]);
-            x++;
-        }
-        printf("\n");
-        y++;
-    }
-    return (0);
+	x = -1;
+	while (++x < WIDTH)
+	{
+		ray_pre(e, x);
+		ray_dir(e);
+		ray_dda(e);
+		ray_wall(e);
+		text_wall(e, x);
+		ray_floor(e);
+		text_floor(e, x);
+	}
+	mlx_put_image_to_window(e->mlx->mlx, e->mlx->window, e->mlx->image, 0, 0);
 }
 
-int main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
-    t_env *e;
-	
-    if (argc != 2)
-    {
+	t_env	*e;
+
+	if (argc != 2)
+	{
 		exit(1);
-    }
+	}
 	e = init_env();
 	init_text(e);
-	ft_initread(argv[1], e);
-	printmap(e);
+	init_read(argv[1], e);
 	draw(e);
 	printf("finished drawing\n");
 	mlx_hook(e->mlx->window, 2, 0, keydown, e);
 	mlx_loop(e->mlx->mlx);
-    return (0);
+	return (0);
 }
