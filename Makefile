@@ -6,7 +6,7 @@
 #    By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/05/30 19:50:54 by pdavid            #+#    #+#              #
-#    Updated: 2018/07/16 17:37:19 by pdavid           ###   ########.fr        #
+#    Updated: 2018/10/30 18:22:20 by pdavid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ header = wolf3d.h
 
 includes = ./libft/libft.a ./minilibx/libmlx.a
 
-SRC = main.c read.c ray.c mlx.c init.c
+SRC = main.c read.c ray.c mlx.c init.c tex.c
 
 OBJ = *.o
 
