@@ -6,15 +6,15 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:08:10 by pdavid            #+#    #+#             */
-/*   Updated: 2018/10/30 18:39:02 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/26 13:42:08 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# define HEIGHT 800
-# define WIDTH 800
+# define HEIGHT 1000
+# define WIDTH 1000
 # define HEIGHT_MAP 18
 # define WIDTH_MAP 18
 # define TEXT 256
@@ -90,6 +90,7 @@ typedef struct		s_ray
 	int				texx;
 	int				textnum;
 	int				d;
+	int				color;
 	int				floortexty;
 	int				floortextx;
 }					t_ray;
@@ -100,14 +101,16 @@ typedef struct		s_env
 	t_mlx			*mlx;
 	t_xpm			xpm;
 	int				**map;
+	int				mapx;
+	int				mapy;
 	int				*text[5];
 	int				x_max;
 	int				y_max;
 }					t_env;
 
 void				draw(t_env *e);
-int					init_read(char *str, t_env *e);
-void				parse(char *str, int x, t_env **e, int index);
+void				init_xpm(t_env *e);
+int					init_read(char *str, t_env *current);
 t_env				*init_env(void);
 t_ray				*init_ray(void);
 void				ray_pre(t_env *e, int x);

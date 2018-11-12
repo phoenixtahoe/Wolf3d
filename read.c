@@ -6,33 +6,31 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:15:53 by pdavid            #+#    #+#             */
-/*   Updated: 2018/10/30 18:22:49 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:20:34 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void		parse(char *str, int x, t_env **e, int index)
+void	parse(char *str, int x, t_env **current, int index)
 {
-	int		k;
+	int k;
 
 	k = 0;
-	if (!((*e)->map[index] = (int *)malloc(sizeof(int) * x)))
+	if (!((*current)->map[index] = (int *)malloc(sizeof(int) * x)))
 		exit(1);
 	while (*str)
 	{
 		if (ft_isdigit(str[0]) && k <= x)
 		{
-			(*e)->map[index][k] = str[0] - '0';
+			(*current)->map[index][k] = str[0] - '0';
 			k++;
 		}
 		str++;
 	}
-	(*e)->map[index][17] = 1;
-	(*e)->map[index][0] = 1;
 }
 
-int			init_read(char *str, t_env *e)
+int		init_read(char *str, t_env *current)
 {
 	int		fd;
 	char	*line;
@@ -45,11 +43,11 @@ int			init_read(char *str, t_env *e)
 		ft_putendl("ERROR");
 		exit(1);
 	}
-	if (!(e->map = (int **)malloc(sizeof(int *) * HEIGHT_MAP)))
+	if (!(current->map = (int **)malloc(sizeof(int *) * HEIGHT_MAP)))
 		exit(1);
 	while (get_next_line(fd, &line) == 1)
 	{
-		parse(line, WIDTH_MAP, &e, index);
+		parse(line, WIDTH_MAP, &current, index);
 		free(line);
 		index++;
 	}

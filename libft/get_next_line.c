@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/04 16:32:48 by pdavid            #+#    #+#             */
-/*   Updated: 2018/06/01 20:46:06 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:23:31 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static	int	ft_fnl(int fd, char **str, char **line)
 	{
 		*line = ft_strnew(ft_strlen(str[fd]));
 		ft_strcpy(*line, str[fd]);
+		free(str[fd]);
 		str[fd] = ft_memalloc(BUFF_SIZE + 1);
 		return (1);
 	}

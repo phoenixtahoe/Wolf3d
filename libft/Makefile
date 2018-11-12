@@ -6,7 +6,7 @@
 #    By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/18 11:54:11 by pdavid            #+#    #+#              #
-#    Updated: 2018/05/23 15:59:57 by pdavid           ###   ########.fr        #
+#    Updated: 2018/10/31 15:06:26 by pdavid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,14 +27,15 @@ HEADER = libft.h
 all: $(NAME)
 
 $(NAME):
-		gcc $(FLAGS) -c $(SRC) -I $(HEADER)
-		ar rc libft.a $(OBJECTS)
-		ranlib libft.a
+		@gcc $(FLAGS) -c $(SRC) -I $(HEADER)
+		@ar rc libft.a $(OBJECTS)
+		@ranlib libft.a
+		@printf "\e[1;32mlibft.a Created!\e[0m\n"
 
 clean:
-	rm -rf $(OBJECTS)
+	@rm -rf $(OBJECTS)
 
 fclean: clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
-re: fclean all
+re: fclean clean all
