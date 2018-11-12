@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/01 20:04:41 by pdavid            #+#    #+#             */
-/*   Updated: 2018/10/30 18:33:55 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/01 19:22:30 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	up(int keycode, t_env *e)
 	if (keycode == 13)
 	{
 		if (e->map[(int)(e->ray->posy)]
-		[(int)(e->ray->posx + e->ray->dirx * 0.2)] == 0)
+			[(int)(e->ray->posx + e->ray->dirx * 0.2)] == 0)
 			e->ray->posx += e->ray->dirx * 0.2;
 		if (e->map[(int)(e->ray->posy + e->ray->diry * 0.2)]
-		[(int)e->ray->posx] == 0)
+			[(int)e->ray->posx] == 0)
 			e->ray->posy += e->ray->diry * 0.2;
 	}
 	return (0);

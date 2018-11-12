@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 19:59:51 by pdavid            #+#    #+#             */
-/*   Updated: 2018/10/30 18:37:17 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/12 13:02:06 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void		draw(t_env *e)
 {
 	int		x;
 
-	x = -1;
-	while (++x < WIDTH)
+	x = 0;
+	while (x != WIDTH)
 	{
 		ray_pre(e, x);
 		ray_dir(e);
@@ -26,6 +26,7 @@ void		draw(t_env *e)
 		text_wall(e, x);
 		ray_floor(e);
 		text_floor(e, x);
+		x++;
 	}
 	mlx_put_image_to_window(e->mlx->mlx, e->mlx->window, e->mlx->image, 0, 0);
 }
@@ -42,7 +43,6 @@ int			main(int argc, char **argv)
 	init_text(e);
 	init_read(argv[1], e);
 	draw(e);
-	printf("finished drawing\n");
 	mlx_hook(e->mlx->window, 2, 0, keydown, e);
 	mlx_loop(e->mlx->mlx);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/30 18:10:38 by pdavid            #+#    #+#             */
-/*   Updated: 2018/10/30 18:36:47 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/01 19:48:20 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	text_floor(t_env *e, int x)
 		e->ray->floortexty = (int)(e->ray->currfloory * TEXT) % (int)TEXT;
 		e->mlx->image_ptr[y * (int)HEIGHT + x] = ((e->text[0][(int)
 			(TEXT * e->ray->floortexty + e->ray->floortextx)]) >> 1) & 8355711;
-		e->mlx->image_ptr[(int)(HEIGHT - y) * HEIGHT + x] = e->text[3]
+		e->mlx->image_ptr[(int)(HEIGHT - y) * HEIGHT + x] = e->text[0]
 			[(int)(TEXT * e->ray->floortexty + e->ray->floortextx)];
 	}
 }
@@ -53,7 +53,9 @@ void	text_wall(t_env *e, int x)
 	{
 		e->ray->d = y * 256 - HEIGHT * 128 + e->ray->lineheight * 128;
 		e->ray->texy = ((e->ray->d * TEXT) / e->ray->lineheight) / 256;
-		e->mlx->image_ptr[y * (int)HEIGHT + x] = ((e->text[0][(int)
-			(TEXT * e->ray->texx + e->ray->texy)]) >> 1) & 8355711;
+		e->ray->color = e->text[0][(int)(TEXT * e->ray->texy + e->ray->texx)];
+		if (e->ray->side == 1)
+			e->ray->color = (e->ray->color >> 1) & 8355711;
+		e->mlx->image_ptr[y * ((int)HEIGHT) + x] = e->ray->color;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:08:10 by pdavid            #+#    #+#             */
-/*   Updated: 2018/10/30 18:39:02 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/11 19:54:04 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # define WIDTH 800
 # define HEIGHT_MAP 18
 # define WIDTH_MAP 18
-# define TEXT 256
+# define TEXT 64
 
 # include <time.h>
 # include <stdio.h>
@@ -90,6 +90,7 @@ typedef struct		s_ray
 	int				texx;
 	int				textnum;
 	int				d;
+	int				color;
 	int				floortexty;
 	int				floortextx;
 }					t_ray;
@@ -107,7 +108,7 @@ typedef struct		s_env
 
 void				draw(t_env *e);
 int					init_read(char *str, t_env *e);
-void				parse(char *str, int x, t_env **e, int index);
+int					*parse(char *str, int x);
 t_env				*init_env(void);
 t_ray				*init_ray(void);
 void				ray_pre(t_env *e, int x);
