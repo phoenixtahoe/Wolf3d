@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:03:53 by pdavid            #+#    #+#             */
-/*   Updated: 2018/11/26 14:15:30 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:58:28 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,6 @@ void		init_text(t_env *e)
 		while (++x < TEXT)
 		{
 			e->text[0][TEXT * y + x] = e->xpm.xpm_f_addr[TEXT * y + x];
-			// e->text[1][TEXT * y + x] = e->xpm.xpm_f_addr[TEXT * y + x];
-			// e->text[2][TEXT * y + x] = e->xpm.xpm_f_addr[TEXT * y + x];
-			// e->text[3][TEXT * y + x] = e->xpm.xpm_f_addr[TEXT * y + x];
 		}
 	}
 }
@@ -60,7 +57,7 @@ t_ray		*init_ray(void)
 	ray->planey = 2 * (atan(0.50 / 1.0));
 	return (ray);
 }
- 
+
 t_env		*init_env(void)
 {
 	t_env	*e;
@@ -78,8 +75,5 @@ t_env		*init_env(void)
 	e->ray->posx = 5;
 	e->ray->posy = 5;
 	e->text[0] = malloc(4 * (TEXT * TEXT));
-	// e->text[1] = malloc(4 * (TEXT * TEXT));
-	// e->text[2] = malloc(4 * (TEXT * TEXT));
-	// e->text[3] = malloc(4 * (TEXT * TEXT));
 	return (e);
 }

@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 19:59:51 by pdavid            #+#    #+#             */
-/*   Updated: 2018/11/26 14:15:04 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:32:14 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void		draw(t_env *e)
 		text_wall(e, x);
 		ray_floor(e);
 		text_floor(e, x);
+		x++;
 	}
 	mlx_put_image_to_window(e->mlx->mlx, e->mlx->window, e->mlx->image, 0, 0);
 }

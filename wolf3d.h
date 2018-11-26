@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/30 20:08:10 by pdavid            #+#    #+#             */
-/*   Updated: 2018/11/26 13:42:08 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:40:37 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ typedef struct		s_env
 
 void				draw(t_env *e);
 void				init_xpm(t_env *e);
-int					init_read(char *str, t_env *current);
+int					init_read(char *str, t_env *e);
 t_env				*init_env(void);
 t_ray				*init_ray(void);
 void				ray_pre(t_env *e, int x);

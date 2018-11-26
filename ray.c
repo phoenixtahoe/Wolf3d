@@ -6,7 +6,7 @@
 /*   By: pdavid <pdavid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/31 23:11:44 by pdavid            #+#    #+#             */
-/*   Updated: 2018/11/26 14:14:12 by pdavid           ###   ########.fr       */
+/*   Updated: 2018/11/26 14:56:02 by pdavid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,6 @@ void	ray_wall(t_env *e)
 	else
 		e->ray->perpwalldist = (e->ray->mapy - e->ray->posy +
 			(1 - e->ray->stepy) / 2) / e->ray->raydiry;
-	// printf("mapx = %d posx = %f stepx = %d raydirx = %f\n", e->ray->mapx, e->ray->posx, e->ray->stepx, e->ray->raydirx);
-	// printf("mapy = %d posy = %f stepy = %d raydiry = %f\n", e->ray->mapy, e->ray->posy, e->ray->stepy, e->ray->raydiry);
 	e->ray->lineheight = (int)(HEIGHT / e->ray->perpwalldist);
 	e->ray->drawstart = -(e->ray->lineheight) / 2 + HEIGHT / 2;
 	if (e->ray->drawstart < 0)
