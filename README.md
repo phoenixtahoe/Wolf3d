@@ -12,3 +12,20 @@ undoubtedly a genius. He was one of the first programmers to think about these a
 and remains famous for them today. With the help of the numerous documents
 available on the internet, you will use mathematics as a tool to create elegant and efficient
 algorithms.
+
+My website can be found here: https://pdavid.net Contact: phoenix@pdavid.net
+
+You are welcome to use this as referance if you have any questions on Raycasting in C!
+
+If cloned follow these simple rules!
+
+Make sure you have CMake!
+
+You need to build the program by doing make all or make re!
+
+If (Error = Makefile does not exist!)
+    make sure Libft is in the includes!
+     || 
+    touch Makefile, then copy contents of the cloned Makefile to the new one!
+
+If you have any questions / stupid stuff I missed please let me know!
